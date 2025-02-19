@@ -1,0 +1,16 @@
+.nav-tabs .nav-link.active {
+    color: #0ab4b4;
+    font-weight: bold;
+  }
+  .card-header-tabs .nav-link {
+    cursor: pointer;
+  }
+  
+  a {
+    color: #0ab4b4 !important;
+  }
+  asl-google-signin-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

@@ -1,0 +1,94 @@
+<div class="container mt-5">
+  <div class="card mx-auto" style="max-width: 500px;">
+    <div class="card-header p-0">
+      <p-tabView>
+        <p-tabPanel header="Giriş Yap">
+          <form (ngSubmit)="onLoginSubmit()" [formGroup]="loginForm" class="p-fluid">
+            <div class="field mb-4">
+              <label for="loginEmail" class="block mb-2">Email</label>
+              <input pInputText id="loginEmail" formControlName="email" type="email" placeholder="Email adresinizi giriniz" 
+                [ngClass]="{'p-invalid': getControl(loginForm, 'email')?.invalid && getControl(loginForm, 'email')?.touched}" />
+              <p-message severity="error" text="Email adresi zorunlu" 
+                *ngIf="getControl(loginForm, 'email')?.invalid && getControl(loginForm, 'email')?.touched">
+              </p-message>
+            </div>
+
+            <div class="field mb-4">
+              <label for="loginPassword" class="block mb-2">Şifre</label>
+              <p-password id="loginPassword" formControlName="password" placeholder="Şifrenizi giriniz"
+                [feedback]="false" [toggleMask]="true"
+                [ngClass]="{'p-invalid': getControl(loginForm, 'password')?.invalid && getControl(loginForm, 'password')?.touched}">
+              </p-password>
+              <p-message severity="error" text="Şifre zorunlu" 
+                *ngIf="getControl(loginForm, 'password')?.invalid && getControl(loginForm, 'password')?.touched">
+              </p-message>
+            </div>
+
+            <p-button type="submit" label="Giriş Yap" styleClass="w-full mb-3" 
+              [disabled]="loginForm.pristine || loginForm.invalid">
+            </p-button>
+            
+            <div class="flex justify-content-center">
+              <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
+            </div>
+          </form>
+        </p-tabPanel>
+
+        <p-tabPanel header="Kayıt Ol">
+          <form (ngSubmit)="onRegisterSubmit()" [formGroup]="registerForm" class="p-fluid">
+            <div class="field mb-4">
+              <label for="registerFirstName">Ad</label>
+              <inputText pInputText id="registerFirstName" formControlName="firstName" type="text" placeholder="adınızı giriniz" 
+                [ngClass]="{'p-invalid': getControl(registerForm, 'registerFirstName')?.invalid && getControl(registerForm, 'registerFirstName')?.touched}" />
+
+              <p-message severity="error" text="Adınızı giriniz lütfent." 
+                *ngIf="getControl(registerForm, 'registerFirstName')?.invalid && getControl(registerForm, 'registerFirstName')?.touched">
+              </p-message>
+            </div>
+            <div class="field mb-4">
+              <label for="registerlastName">Soyad</label>
+              <inputText pInputText id="registerlastName" formControlName="lastName" type="text" placeholder="soyadınızı giriniz" 
+                [ngClass]="{'p-invalid': getControl(registerForm, 'registerlastName')?.invalid && getControl(registerForm, 'registerlastName')?.touched}" />
+
+              <p-message severity="error" text="User name is required." 
+                *ngIf="getControl(registerForm, 'registerlastName')?.invalid && getControl(registerForm, 'registerlastName')?.touched">
+              </p-message>
+            </div>
+            <div class="field mb-4">
+              <label for="email">Email</label>
+              <inputText pInputText id="email" formControlName="email" type="email" placeholder="Enter your email" 
+                [ngClass]="{'p-invalid': getControl(registerForm, 'email')?.invalid && getControl(registerForm, 'email')?.touched}" />
+
+              <p-message severity="error" text="A valid email is required." 
+                *ngIf="getControl(registerForm, 'email')?.invalid && getControl(registerForm, 'email')?.touched">
+              </p-message>
+            </div>
+            <div class="field mb-4">
+              <label for="registerPassword">Password</label>
+              <p-password id="registerPassword" formControlName="password" type="password" placeholder="Enter your password"
+                [feedback]="false" [toggleMask]="true"
+                [ngClass]="{'p-invalid': getControl(registerForm, 'password')?.invalid && getControl(registerForm, 'password')?.touched}">
+              </p-password>
+              <p-message severity="error" text="Password must be at least 6 characters." 
+                *ngIf="getControl(registerForm, 'password')?.invalid && getControl(registerForm, 'password')?.touched">
+              </p-message>
+            </div>
+            <div class="field mb-4">
+              <label for="confirmPassword">Re-Password</label>
+              <p-password id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Re-enter your password"
+                [feedback]="false" [toggleMask]="true"
+                [ngClass]="{'p-invalid': registerForm.errors?.['passwordsMismatch'] && getControl(registerForm, 'confirmPassword')?.touched}">
+              </p-password>
+              <p-message severity="error" text="Passwords do not match." 
+                *ngIf="registerForm.errors?.['passwordsMismatch'] && getControl(registerForm, 'confirmPassword')?.touched">
+              </p-message>
+            </div>
+            <p-button type="submit" label="Kaydet" styleClass="w-full" 
+              [disabled]="registerForm.pristine || registerForm.invalid">
+            </p-button>
+          </form>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,170 @@
+
+    <h2>Etkinliğiniz için 3 adımda profesyonel mekanlar arayın</h2>
+    <h5>Profesyonelleri direkt olarak %100 bedava rezerve edin</h5>
+    <p-stepper [value]="1" class="basis-[50rem]">
+        <p-step-list>
+            <p-step [value]="1"></p-step>
+            <p-step [value]="2"></p-step>
+            <p-step [value]="3"></p-step>
+        </p-step-list>
+        <p-step-panels>
+            <p-step-panel [value]="1">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-48">
+                        <div
+                            class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                        >
+                        <div class="container mt-3">
+                            <label for="eventMode" class="form-label"><h4>Ne Tür Bir Etkinlik Planlıyorsunuz:</h4></label>
+                            <p-select  id="eventMode" [options]="eventModes" [(ngModel)]="selectedEventMode" optionLabel="name" placeholder="Etkinlik Modu Seçiniz..." class="blockdisplay" />
+                        </div>
+                        </div>
+                        <div class="flex pt-6 justify mt-3">
+                            <p-button label="Kaydet -> Devam Et" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
+                        </div>
+                    </div>
+                </ng-template>
+            </p-step-panel>
+    
+            <p-step-panel [value]="2">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-48">
+                        <div
+                            class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                        >
+                        <div class="container mt-3">
+                            <div class="flex-auto>">
+                            <label for="eventType" class="form-label"><h6>Ne Tür Bir Etkinlik Planlıyorsunuz :</h6></label>
+                            <p-select [options]="eventTypes" [(ngModel)]="selectedEventType" optionLabel="name" placeholder="Etkinlik Türü Seçiniz..."  class="blockdisplay" />
+                        </div>
+                            <div class="flex-auto mt-3">
+                                <label for="selectedDate" class="form-label font-bold block mb-2">
+                                    <h6>Etkinlik Tarihi :</h6>
+                                </label>
+                                <p-datepicker [(ngModel)]="selectedDate" [iconDisplay]="'input'" [showIcon]="true" inputId="selectedDate"  class="blockdisplay" />
+                            </div>    
+                            <div class="flex-auto mt-3">
+                                    <label for="personCount" class="form-label font-bold block mb-2">Kişi Sayısı:</label>
+                                    <select
+                                      id="personCount"
+                                      class="form-select"
+                                      [(ngModel)]="selectedPeopleCount"
+                                    >
+                                    <option value="" disabled>Kişi sayısı seçiniz...</option>
+                                    <option value="1">1-5</option>
+                                    <option value="2">6-10</option>
+                                    <option value="3">11-15</option>
+                                    <option value="4">16-20</option>
+                                    <option value="5">20+</option>
+
+                                    </select>
+                            </div>    
+                            <div class="flex-auto mt-4">
+                                <label for="personCount" class="form-label font-bold block mb-2">Alkol Durumu:</label>
+                                <div class="blockdisplay">
+                                <p-radiobutton name="alcoholfree" value="1" [(ngModel)]="alcoholFree" inputId="ingredient1" />
+                                <label for="ingredient1" style="margin-left: 10px;">Alkolsüz</label>&nbsp;
+                                <p-radiobutton name="alcohol" value="2" [(ngModel)]="alcoholFree" inputId="ingredient2" />
+                                <label for="ingredient2" style="margin-left: 10px;">Alkollü</label>&nbsp;
+                           
+                                <p-radiobutton name="farketmez" value="3" [(ngModel)]="alcoholFree" inputId="ingredient3" />
+                                <label for="ingredient3" style="margin-left: 10px;">Farketmez</label>&nbsp;
+                            </div>
+                           
+                               
+                            </div>
+                            
+                            <div class="flex-auto mt-3">
+                                <label for="personCount" class="form-label font-bold block mb-2">Kişi Sayısı:</label>
+                                <p-multiselect [options]="services" [(ngModel)]="selectedServices" optionLabel="name" placeholder="Servis Seçiniz" [maxSelectedLabels]="3" class="blockdisplay" />
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="flex pt-6 mt-3">
+                        <p-button label="Kaydet & Devam Et" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                    </div>
+                </ng-template>
+            </p-step-panel>
+    
+            <p-step-panel [value]="3">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-48">
+                        <div
+                            class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                        >
+                        <div class="card flex justify-center bg-light">
+                            
+                                <p class="m-0 bg-light p-3">
+                                   <label class="blockdisplay">Etkinlik Modu : </label>
+                                   <span class="fw-bold">{{selectedEventMode.name}}</span>
+
+                                   <label class="blockdisplay mt-4">Etkinlik Türü : </label>
+                                   <span class="fw-bold">{{selectedEventType.name}}</span>
+
+                                   <label class="blockdisplay mt-4">Etkinlik Tarihi : </label>
+                                   <span class="fw-bold">{{ selectedDate | date: 'dd.MM.yyyy' }}</span>
+
+                                   <label class="blockdisplay mt-4">Kişi Sayısı : </label>
+                                   <span class="fw-bold">
+                                    <ng-container *ngIf="selectedPeopleCount == 1">1-5</ng-container>
+                                    <ng-container *ngIf="selectedPeopleCount == 2">6-10</ng-container>
+                                    <ng-container *ngIf="selectedPeopleCount == 3">11-15</ng-container>
+                                    <ng-container *ngIf="selectedPeopleCount == 4">16-20</ng-container>
+                                    <ng-container *ngIf="selectedPeopleCount == 5">20+</ng-container>
+                                  </span>
+
+                                   <label class="blockdisplay mt-4">Alkol Durumu : </label>
+                                   <span class="fw-bold">
+                                    <ng-container *ngIf="alcoholFree == 1">Alkolsüz</ng-container>
+                                    <ng-container *ngIf="alcoholFree == 2">Alkollü</ng-container>
+                                    <ng-container *ngIf="alcoholFree == 3">Farketmez</ng-container>
+                                  </span>
+
+                                   <label class="blockdisplay mt-4">Servisler : </label>
+                                   <span class="fw-bold">
+                                    <ng-container *ngFor="let service of selectedServices" class="blockdisplay">
+                                        {{service.name}} 
+                                    </ng-container>
+                                   </span>
+                                   
+                                </p>
+                            
+                        </div>
+                        </div>
+                    </div>
+                    <div class="pt-6 mt-3">
+                        <p-button label="Ara" icon="pi pi-arrow-left" iconPos="right" (onClick)="searchCorporate()" />
+                    </div>
+                </ng-template>
+            </p-step-panel>
+        </p-step-panels>
+    </p-stepper>
+    <div class="container">
+        <div class="row">
+          <div 
+            class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4" 
+            *ngFor="let corporate of corporates"
+          >
+            <div class="card h-100 shadow">
+              <img *ngIf="corporate.picture" 
+                   [src]="corporate.picture" 
+                   class="card-img-top" 
+                   alt="{{ corporate.name }}" />
+              <div class="card-body">
+                <h5 class="card-title">{{ corporate.name }}</h5>
+                <h6 class="card-subtitle text-muted">{{ corporate.title }}</h6>
+                <p class="card-text">
+                  <strong>Adres:</strong> {{ corporate.address }} <br>
+                </p>
+              </div>
+              <div class="card-footer text-center">
+                <a class="btn btn-primary btn-sm">Seç</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      

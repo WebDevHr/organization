@@ -1,0 +1,229 @@
+<h5>Tedarikçi Firma Olun</h5>
+  <p-stepper [value]="activeStepIndex" class="basis-[50rem]" [readonly]="true">
+    <p-step-list>
+        <p-step [value]="1">
+          <div (click)="$event.stopPropagation()">
+             Şirket Bilgileri
+          </div>
+        </p-step>
+        <p-step [value]="2">
+          <div (click)="$event.stopPropagation()">
+            Detay Bilgiler
+         </div>
+        </p-step>
+        <p-step [value]="3">
+          <div (click)="$event.stopPropagation()">
+            Etkinlik Tipleri
+         </div>
+          </p-step>
+        <p-step [value]="4">
+          <div (click)="$event.stopPropagation()">
+            Servisler
+         </div>
+          </p-step>
+    </p-step-list>
+    <p-step-panels>
+        <p-step-panel [value]="1">
+            <ng-template #content >
+                <div class="flex flex-col h-48">
+                    <div>
+                    <form [formGroup]="registrationFormStep1" class="p-4">
+                        <div class="mb-3">
+                          <label for="storeName" class="form-label">Mağaza Adı</label>
+                          <input
+                            id="storeName"
+                            formControlName="storeName"
+                            placeholder="Mağaza Adı Giriniz"
+                            class="form-control"
+                          />    <div *ngIf="!this.isStoreNameEntered()">
+                          <span class="text-danger">Mağaza adı zorunlu</span>
+                        </div>
+                        </div>
+                    
+                      
+                        <div class="mb-3">
+                          <label for="taxNumber" class="form-label">Vergi Numarası</label>
+                          <input
+                            id="taxNumber"
+                            formControlName="taxNumber"
+                            placeholder="Vergi Numarası"
+                            class="form-control"
+                          />
+                          <div *ngIf="!this.isTaxNumberEntered()" class="text-red-500">
+                            <span class="text-danger">Vergi numarası zorunlu</span>
+                          </div>
+                        </div>
+                      
+                     </form>
+                    </div>
+                    <div class="flex pt-6 justify mt-3 d-flex justify-content-center">
+                        <a class="btn btn-primary" (click)="saveFirstStep()">
+                          <i class="fa-solid fa-floppy-disk"></i> 
+                           Kaydet ve Devam Et  <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </ng-template>
+        </p-step-panel>
+
+        <p-step-panel [value]="2">
+            <ng-template #content>
+                <div class="flex flex-col h-48">
+                    <div>
+                        <form [formGroup]="registrationFormStep2" class="p-4">
+                            <div class="mb-3">
+                              <label for="corporateTitle" class="form-label">Corporate Title</label>
+                              <input
+                                id="corporateTitle"
+                                formControlName="corporateTitle"
+                                class="form-control"
+                                placeholder="Corporate Title"
+                              />
+                            </div>
+                          
+                            <div class="mb-3">
+                              <label for="taxOffice" class="form-label">Tax Office</label>
+                              <input
+                                id="taxOffice"
+                                formControlName="taxOffice"
+                                class="form-control"
+                                placeholder="Tax Office"
+                              />
+                            </div>
+                          
+                            <div class="mb-3">
+                              <label for="supportEmail" class="form-label">Support Email</label>
+                              <input
+                                id="supportEmail"
+                                formControlName="supportEmail"
+                                class="form-control"
+                                placeholder="Support Email"
+                                type="email"
+                              />
+                            </div>
+                          
+                            <div class="mb-3">
+                              <label for="telephone" class="form-label">Phone Number</label>
+                              <input
+                                id="telephone"
+                                formControlName="telephone"
+                                class="form-control"
+                                placeholder="Phone Number"
+                                type="tel"
+                              />
+                            </div>
+                          
+                            <div class="mb-3">
+                              <label for="telephone2" class="form-label">Phone Number 2</label>
+                              <input
+                                id="telephone2"
+                                formControlName="telephone2"
+                                class="form-control"
+                                placeholder="Phone Number 2"
+                                type="tel"
+                              />
+                            </div>
+                          
+                            <div class="mb-3">
+                              <label for="webAddress" class="form-label">Web Address</label>
+                              <input
+                                id="webAddress"
+                                formControlName="webAddress"
+                                class="form-control"
+                                placeholder="Web Address"
+                              />
+                            </div>
+                          
+                            <div class="mb-3">
+                              <label for="maxCustomerCapacity" class="form-label">Max Müşterisi Kapasitesi</label>
+                              <input
+                                id="maxCustomerCapacity"
+                                formControlName="maxCustomerCapacity"
+                                class="form-control"
+                                placeholder="Max Müşterisi Kapasitesi"
+                                type="number"
+                              />
+                            </div>
+                          
+                            <div class="mb-3">
+                              <label for="picture" class="form-label">Picture Upload</label>
+                              <input
+                                id="picture"
+                                type="file"
+                                (change)="onFileSelected($event)"
+                                class="form-control"
+                              />
+                            </div>
+                          
+                            <div class="mb-3">
+                              <label for="address" class="form-label">Address</label>
+                              <textarea
+                                id="address"
+                                formControlName="address"
+                                class="form-control"
+                                placeholder="Address"
+                              ></textarea>
+                            </div>
+                          
+                            <div class="d-flex justify-content-between">
+                              <!-- <button type="button" class="btn btn-secondary">Skip</button>
+                              <button type="submit" [disabled]="corporateForm.invalid" class="btn btn-primary">
+                                Forward
+                              </button> -->
+                            </div>
+                          </form>
+                    </div>
+                </div>
+                <div class="flex pt-6 mt-3 d-flex justify-content-center">
+                    <a class="btn btn-light" (click)="this.activeStepIndex=1"> <i class="fa-solid fa-arrow-left"></i> Geri Dön</a>&nbsp;
+                    <a class="btn btn-primary" (click)="saveSecondStep()">
+                      <i class="fa-solid fa-floppy-disk"></i> 
+                           Kaydet ve Devam Et  <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </ng-template>
+        </p-step-panel>
+
+        <p-step-panel [value]="3">
+            <ng-template #content>
+                <div class="flex flex-col h-48">
+                  <div class="container">
+                    <div class="row">
+                      <div *ngFor="let eventType of eventTypes" class="col-md-4 mb-3 d-flex align-items-center">
+                        <p-toggleswitch [inputId]="eventType.id" [(ngModel)]="selectedEventTypes2[eventType.id]"></p-toggleswitch>
+                        <label [htmlFor]="eventType.id" class="ms-2">{{ eventType.name }}</label>
+                      </div>
+                    </div>
+                  </div>
+                        
+                </div>
+                <div class="pt-6 mt-3 d-flex justify-content-center">
+                    <a class="btn btn-light" (click)="this.activeStepIndex=2">  <i class="fa-solid fa-arrow-left"></i> Geri Dön</a>&nbsp;
+                    <a class="btn btn-primary" (click)="this.saveThirdStep()"><i class="fa-solid fa-floppy-disk"></i> 
+                      Kaydet ve Devam Et  <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </ng-template>
+        </p-step-panel>
+
+        <p-step-panel [value]="4">
+            <ng-template #content>
+                <div class="flex flex-col h-48">
+                  <div class="container">
+                    <div class="row">
+                      <div *ngFor="let service of services" class="col-md-4 mb-3 d-flex align-items-center">
+                        <p-toggleswitch [inputId]="service.id" [(ngModel)]="selectedServices[service.id]"></p-toggleswitch>
+                        <label [htmlFor]="service.id" class="ms-2">{{ service.name }}</label>
+                      </div>
+                    </div>
+                  </div>      
+                </div>
+                <div class="pt-6 mt-3 d-flex justify-content-center">
+                    <a class="btn btn-light" (click)="this.activeStepIndex=3"><i class="fa-solid fa-arrow-left"></i> Geri Dön</a>&nbsp;
+                    <a class="btn btn-primary" (click)="onSubmit()" ><i class="fa-solid fa-floppy-disk"></i> 
+                      Şirket Bilgierini Kaydet</a> 
+                </div>
+            </ng-template>
+        </p-step-panel>
+    </p-step-panels>
+</p-stepper>
+  

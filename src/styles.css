@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+   /* background-image: url('assets/images/event_bg.jpg');
+    background-size: cover; /* Resmi tam ekran yapar 
+    background-repeat: repeat; /* Tekrarlamayı önler 
+    background-position: center; /* Merkezi konumlandırır */
+  }
+
+  p-datepicker {
+    display: block; /* Bileşeni tam genişlikte gösterir ve alt satıra geçmesini sağlar */
+  }
+
+  .blockdisplay {
+    width: 100%; /* Bileşeni tam genişlikte gösterir */
+    padding: 3px 3px 3px 3px   !important; /* Kenar boşlukları ayarlar */
+  }
+
+  marginLeft {
+    margin-left: 5px; /* Sol kenar boşluğunu ayarlar */
+  }
+
+  marginLeft {
+    margin-right: 5px; /* Sol kenar boşluğunu ayarlar */
+  }
+
+  .btn {
+    min-height: 35px !important;
+  }

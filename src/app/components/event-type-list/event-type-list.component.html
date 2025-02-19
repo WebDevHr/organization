@@ -1,0 +1,9 @@
+<ul *ngIf="eventTypes.length > 0; else noData">
+    <li *ngFor="let eventType of eventTypes">
+      {{ eventType.name }}
+    </li>
+  </ul>
+  
+  <ng-template #noData>
+    <p>No event types available.</p>
+  </ng-template>
